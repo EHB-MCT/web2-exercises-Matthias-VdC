@@ -16,10 +16,16 @@ a {
 
 img {
     background-color: rgb(255, 255, 255);
-    border-radius: 0.1em;
+    border-radius: 0.3em;
 }
 
 /*ID*/
+
+#pokemonTeam {
+    font-size: 2em;
+    margin: 1em 0;
+    text-align: center;
+}
 
 #pokemonContainer {
     display: flex;

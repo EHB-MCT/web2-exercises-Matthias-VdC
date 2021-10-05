@@ -1,8 +1,9 @@
 "use strict";
-
+import Teams from "./team.js";
 
 
 let pokemonNames = [];
+let team = "The Kanto Boys"
 
 class Pokemon {
     constructor() {
@@ -20,7 +21,6 @@ class Pokemon {
                             return answer.json();
                         })
                         .then(data => {
-                            console.log(data);
                             let types;
                             if (data.types.length > 1) {
                                 types = `<p class="pokemonType1">${data.types[0].type.name}</p>
@@ -40,6 +40,7 @@ class Pokemon {
                                                 <a href="#">Add to team</a>
                                             </div>
                                             `
+
                         })
                 }
             })
@@ -47,3 +48,10 @@ class Pokemon {
 }
 
 let pokemon = new Pokemon();
+let team = new Teams(team);
+
+document.getElementById("pokemonTeam").innerHTML = team.describe();
+
+function refreshTeam() {
+
+}
