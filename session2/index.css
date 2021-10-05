@@ -1,0 +1,53 @@
+/*GLOBAL*/
+
+* {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    padding: 1em;
+    background-color: rgb(255, 158, 158);
+    border-radius: 1em;
+}
+
+/*ID*/
+
+#pokemonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/*CLASS*/
+
+.pokemonBox {
+    display: flex;
+    width: 20vw;
+    background-color: rgb(245, 245, 245);
+    flex-direction: column;
+    padding: 1em;
+    border-radius: 0.5em;
+    border: 1px solid black;
+    margin: 1em;
+}
+
+.pokemonID {
+    color: rgb(78, 78, 78);
+    font-size: 0.8em;
+    margin: 1em 0;
+}
+
+.pokemonName {
+    text-align: center;
+    margin: 0.1em 0;
+}
+
+.pokemonTypes {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1em 0;
+}
