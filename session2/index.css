@@ -5,7 +5,19 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-a {
+button,
+input[type="submit"],
+input[type="reset"] {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+button {
     text-align: center;
     text-decoration: none;
     color: black;
@@ -20,6 +32,10 @@ img {
 }
 
 /*ID*/
+
+#hideAll {
+    display: none;
+}
 
 #pokemonTeam {
     font-size: 2em;

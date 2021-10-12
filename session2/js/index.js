@@ -4,6 +4,7 @@ import Teams from "./team.js";
 
 let pokemonNames = [];
 let team = "The Kanto Boys"
+let html = [];
 
 class Pokemon {
     constructor() {
@@ -28,7 +29,7 @@ class Pokemon {
                             } else {
                                 types = `<p class="pokemonType1">${data.types[0].type.name}</p>`
                             }
-                            document.getElementById("pokemonContainer").innerHTML +=
+                            html.push(document.getElementById("pokemonContainer").innerHTML +=
                                 `
                                             <div class="pokemonBox">
                                                 <img src="${data.sprites.front_default}" alt="pokemon image">
@@ -37,21 +38,33 @@ class Pokemon {
                                                 <div class="pokemonTypes">
                                                     ${types}
                                                 </div>
-                                                <a href="#">Add to team</a>
+                                                <button id="pokemonButton${i}" type="button">Add to team</button>
                                             </div>
                                             `
-
+                            );
+                            if (document.getElementById("pokemonButton150")) {
+                                document.getElementById("hideAll").style.display = "inline";
+                                console.log(pokemonNames);
+                                html;
+                            }
+                            document.getElementById(`pokemonButton${i}`).addEventListener("click", e => {
+                                e.preventDefault();
+                                console.log(e);
+                            })
                         })
                 }
             })
     }
 }
 
+
+
 let pokemon = new Pokemon();
-let team = new Teams(team);
 
-document.getElementById("pokemonTeam").innerHTML = team.describe();
+// let team = new Teams();
 
-function refreshTeam() {
+// document.getElementById("pokemonTeam").innerHTML = team.describe();
 
-}
+// function refreshTeam() {
+
+// }
