@@ -8,48 +8,47 @@
 import * as THREE from "./three/build/three.module.js";
 
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000);
-
-const renderer = new THREE.WebGLRenderer();
+let scene = new THREE.Scene();
+let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+let renderer = new THREE.WebGLRenderer({
+    antialias: true,
+    canvas: document.getElementById("canvas")
+});
 renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(new THREE.Color('black'));
 document.body.appendChild(renderer.domElement);
 
-camera.position.set(0, 0, 100);
-camera.lookAt(0, 0, 0);
-
-//adding a linear material (texture)
-const material = new THREE.LineBasicMaterial({
-    color: 0x0000ff
+//add testcube
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshPhongMaterial({
+    color: "red",
 });
+const cube = new THREE.Mesh(geometry, material);
 
-//creates the geometry
-const points = [];
-points.push(new THREE.Vector3(-10, 0, 0));
-points.push(new THREE.Vector3(0, 10, 0));
-points.push(new THREE.Vector3(10, 0, 0));
+scene.add(cube);
 
-const geometry = new THREE.BufferGeometry().setFromPoints(points);
+let light = new THREE.HemisphereLight(0xf6e86d, 0x404040, 0.5);
+scene.add(light);
 
-//adds the material and the combined points(geometry) into the const line
-const line = new THREE.Line(geometry, material);
 
-scene.add(line);
+camera.position.z = 10;
 
-//Renders the scene
-function animate() {
+let animate = function () {
     requestAnimationFrame(animate);
+    cube.position.set(0, 8 - window.scrollY / 520, 0);
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
     renderer.render(scene, camera);
-}
-animate();
+};
 
+animate();
 
 /////////////////////
 //NON-THREE.JS code//
 /////////////////////
 
 let data;
-let randomNumber = Math.floor(Math.random() * 60);
+let randomNumber = Math.floor(Math.random() * 59);
 
 window.onload = function () {
     async function getData(url, _callback) {
@@ -59,7 +58,8 @@ window.onload = function () {
         return data;
     }
 
-    getData(`https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=${randomNumber}`, () => {
+    getData(`https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=${randomNumber}`, async () => {
+        await data;
         console.log(data);
         document.getElementById("randomThumb").innerHTML = `<img src="${data[randomNumber].thumb}" alt="${data[randomNumber].title}">`;
         document.getElementById("randomTitle").innerHTML = `<p>Random game: <b>${data[randomNumber].title}</p>`;
