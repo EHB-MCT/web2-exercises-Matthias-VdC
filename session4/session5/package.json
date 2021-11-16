@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "cleave.js": "^1.6.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.9.1"
+  }
+}
